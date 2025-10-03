@@ -32,6 +32,14 @@ const FestivalCard = ({ festival }) => {
     return colors[type] || 'secondary';
   };
 
+  const truncateDescription = (text, wordLimit = 10) => {
+    const words = text.split(' ');
+    if (words.length <= wordLimit) {
+      return text;
+    }
+    return words.slice(0, wordLimit).join(' ') + '...';
+  };
+
   const handleLearnMore = () => {
     navigate('/festival', { state: { festival } });
   };
@@ -51,7 +59,7 @@ const FestivalCard = ({ festival }) => {
         </div>
         
         <Card.Text className="text-muted small">
-          {getFestivalDescription(festival.name, festival.description)}
+          {truncateDescription(getFestivalDescription(festival.name, festival.description))}
         </Card.Text>
         
         <Countdown targetDate={festival.date} />
