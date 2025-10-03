@@ -209,3 +209,115 @@ body.dark-mode {
   transition: background-color 0.3s ease;
 }
 
+/* Festival Detail Page Styles */
+.festival-detail-page {
+  min-height: 100vh;
+}
+
+.festival-detail-hero {
+  position: relative;
+  min-height: 450px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: 
+    url('https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?w=1920&q=80'),
+    linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.festival-emoji-large {
+  font-size: 8rem;
+  animation: fadeIn 1s ease-out;
+}
+
+.large-countdown-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.large-countdown-box {
+  transition: all 0.3s ease;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.large-countdown-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-section {
+  animation: fadeIn 1s ease-out;
+}
+
+.description-section {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  animation: fadeIn 1.2s ease-out;
+}
+
+.action-buttons {
+  animation: fadeIn 1.4s ease-out;
+}
+
+.action-buttons .btn {
+  transition: all 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode support for detail page */
+.dark-mode .festival-detail-page {
+  background-color: #1a1a1a;
+  color: #f8f9fa;
+}
+
+.dark-mode .description-section h3,
+.dark-mode .countdown-section h2 {
+  color: #f8f9fa;
+}
+
+/* Responsive styles for detail page */
+@media (max-width: 768px) {
+  .festival-emoji-large {
+    font-size: 5rem;
+  }
+  
+  .large-countdown-box {
+    min-height: 120px;
+  }
+  
+  .large-countdown-box .countdown-number {
+    font-size: 2.5rem !important;
+  }
+  
+  .large-countdown-box .countdown-label {
+    font-size: 0.9rem !important;
+  }
+  
+  .festival-detail-hero {
+    min-height: 350px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+  }
+}
+
