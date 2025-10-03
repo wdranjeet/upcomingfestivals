@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, Badge } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
+import SocialShare from './SocialShare';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const FestivalDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const festival = location.state?.festival;
+  const { t, getFestivalDescription } = useLanguage();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -110,28 +113,28 @@ const FestivalDetail = () => {
               <div className="col-6 col-md-3">
                 <LargeCountdownBox 
                   value={timeLeft.days} 
-                  label="Days"
+                  label={t('days')}
                   gradient="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
                 />
               </div>
               <div className="col-6 col-md-3">
                 <LargeCountdownBox 
                   value={timeLeft.hours} 
-                  label="Hours"
+                  label={t('hours')}
                   gradient="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
                 />
               </div>
               <div className="col-6 col-md-3">
                 <LargeCountdownBox 
                   value={timeLeft.minutes} 
-                  label="Minutes"
+                  label={t('minutes')}
                   gradient="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)"
                 />
               </div>
               <div className="col-6 col-md-3">
                 <LargeCountdownBox 
                   value={timeLeft.seconds} 
-                  label="Seconds"
+                  label={t('seconds')}
                   gradient="linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
                 />
               </div>
@@ -141,8 +144,14 @@ const FestivalDetail = () => {
 
         {/* Description Section */}
         <div className="description-section mb-5">
-          <h3 className="fw-bold mb-3">About {festival.name}</h3>
-          <p className="lead">{festival.description}</p>
+          <h3 className="fw-bold mb-3">{t('about')} {festival.name}</h3>
+          <p className="lead">{getFestivalDescription(festival.name, festival.description)}</p>
+        </div>
+
+        {/* Social Share Section */}
+        <div className="mb-5">
+          <h4 className="text-center fw-bold mb-4">{t('share')}</h4>
+          <SocialShare festival={festival} />
         </div>
 
         {/* Action Buttons */}
@@ -154,7 +163,7 @@ const FestivalDetail = () => {
             className="px-5 py-3"
           >
             <span className="me-2">📅</span>
-            Add to Google Calendar
+            {t('addToCalendar')}
           </Button>
           <Button 
             variant="secondary" 
@@ -163,7 +172,7 @@ const FestivalDetail = () => {
             className="px-5 py-3"
           >
             <span className="me-2">←</span>
-            Back to Festivals
+            {t('backToFestivals')}
           </Button>
         </div>
       </Container>
