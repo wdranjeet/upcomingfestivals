@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container, Row, Col, Form, InputGroup } from 'react-bootstrap';
 import Header from './components/Header';
 import FestivalCard from './components/FestivalCard';
+import FestivalDetail from './components/FestivalDetail';
 import './App.css';
 
 function App() {
@@ -81,85 +83,94 @@ function App() {
   };
 
   return (
-    <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      
-      {/* Hero Section with Background */}
-      <div className="hero-section">
-        <div className="hero-overlay"></div>
-        <Container className="hero-content">
-          <div className="text-center text-white">
-            <h1 className="display-3 fw-bold mb-4 animate-fade-in">
-              🎉 Upcoming Indian Festivals 🎉
-            </h1>
-            <p className="lead mb-4 animate-fade-in">
-              Countdown to India's vibrant celebrations and cultural events
-            </p>
-          </div>
-        </Container>
+    <Router>
+      <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+        <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        
+        <Routes>
+          <Route path="/" element={
+            <>
+              {/* Hero Section with Background */}
+              <div className="hero-section">
+                <div className="hero-overlay"></div>
+                <Container className="hero-content">
+                  <div className="text-center text-white">
+                    <h1 className="display-3 fw-bold mb-4 animate-fade-in">
+                      🎉 Upcoming Indian Festivals 🎉
+                    </h1>
+                    <p className="lead mb-4 animate-fade-in">
+                      Countdown to India's vibrant celebrations and cultural events
+                    </p>
+                  </div>
+                </Container>
+              </div>
+
+              {/* Main Content */}
+              <Container className="py-5" id="upcoming">
+                {/* Search and Filter Section */}
+                <Row className="mb-4">
+                  <Col md={8} className="mb-3 mb-md-0">
+                    <InputGroup>
+                      <InputGroup.Text>🔍</InputGroup.Text>
+                      <Form.Control
+                        type="text"
+                        placeholder="Search festivals..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                      />
+                    </InputGroup>
+                  </Col>
+                  <Col md={4}>
+                    <Form.Select value={filterType} onChange={handleFilterChange}>
+                      <option value="all">All Festivals</option>
+                      <option value="Hindu">Hindu</option>
+                      <option value="Muslim">Muslim</option>
+                      <option value="Christian">Christian</option>
+                      <option value="Sikh">Sikh</option>
+                      <option value="Jain">Jain</option>
+                      <option value="Buddhist">Buddhist</option>
+                      <option value="National">National</option>
+                    </Form.Select>
+                  </Col>
+                </Row>
+
+                {/* Festival Count */}
+                <div className="mb-4">
+                  <p className="text-muted">
+                    Showing <strong className="text-primary">{filteredFestivals.length}</strong> upcoming festivals
+                  </p>
+                </div>
+
+                {/* Festival Cards Grid */}
+                {filteredFestivals.length > 0 ? (
+                  <Row xs={1} md={2} lg={3} className="g-4">
+                    {filteredFestivals.map((festival, index) => (
+                      <Col key={index}>
+                        <FestivalCard festival={festival} />
+                      </Col>
+                    ))}
+                  </Row>
+                ) : (
+                  <div className="text-center py-5">
+                    <h3 className="text-muted">😔 No festivals found</h3>
+                    <p className="text-muted">Try adjusting your search or filter</p>
+                  </div>
+                )}
+              </Container>
+
+              {/* Footer */}
+              <footer className={`py-4 mt-5 ${darkMode ? 'bg-dark text-light' : 'bg-light'}`}>
+                <Container className="text-center">
+                  <p className="mb-2">🎊 Celebrating Indian Culture and Traditions 🎊</p>
+                  <p className="small text-muted mb-0">Made with ❤️ for all festival lovers</p>
+                </Container>
+              </footer>
+            </>
+          } />
+          <Route path="/festival" element={<FestivalDetail />} />
+        </Routes>
       </div>
-
-      {/* Main Content */}
-      <Container className="py-5" id="upcoming">
-        {/* Search and Filter Section */}
-        <Row className="mb-4">
-          <Col md={8} className="mb-3 mb-md-0">
-            <InputGroup>
-              <InputGroup.Text>🔍</InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Search festivals..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-            </InputGroup>
-          </Col>
-          <Col md={4}>
-            <Form.Select value={filterType} onChange={handleFilterChange}>
-              <option value="all">All Festivals</option>
-              <option value="Hindu">Hindu</option>
-              <option value="Muslim">Muslim</option>
-              <option value="Christian">Christian</option>
-              <option value="Sikh">Sikh</option>
-              <option value="Jain">Jain</option>
-              <option value="Buddhist">Buddhist</option>
-              <option value="National">National</option>
-            </Form.Select>
-          </Col>
-        </Row>
-
-        {/* Festival Count */}
-        <div className="mb-4">
-          <p className="text-muted">
-            Showing <strong className="text-primary">{filteredFestivals.length}</strong> upcoming festivals
-          </p>
-        </div>
-
-        {/* Festival Cards Grid */}
-        {filteredFestivals.length > 0 ? (
-          <Row xs={1} md={2} lg={3} className="g-4">
-            {filteredFestivals.map((festival, index) => (
-              <Col key={index}>
-                <FestivalCard festival={festival} />
-              </Col>
-            ))}
-          </Row>
-        ) : (
-          <div className="text-center py-5">
-            <h3 className="text-muted">😔 No festivals found</h3>
-            <p className="text-muted">Try adjusting your search or filter</p>
-          </div>
-        )}
-      </Container>
-
-      {/* Footer */}
-      <footer className={`py-4 mt-5 ${darkMode ? 'bg-dark text-light' : 'bg-light'}`}>
-        <Container className="text-center">
-          <p className="mb-2">🎊 Celebrating Indian Culture and Traditions 🎊</p>
-          <p className="small text-muted mb-0">Made with ❤️ for all festival lovers</p>
-        </Container>
-      </footer>
-    </div>
+    </Router>
   );
 }
 
