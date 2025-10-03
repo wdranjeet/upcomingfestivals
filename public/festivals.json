@@ -1,142 +1,72 @@
 [
   {
-    "name": "Diwali",
+    "name": "Sharad Purnima",
+    "date": "2025-10-06",
+    "type": "Hindu",
+    "emoji": "🌕",
+    "description": "Sharad Purnima, the auspicious autumn full moon, is observed with late-night devotional singing, moonlit offerings, and cooling kheer, symbolizing divine grace, seasonal transition, wellness beliefs, and gratitude for abundance during the harvest’s early stages."
+  },
+  {
+    "name": "Karwa Chauth",
+    "date": "2025-10-10",
+    "type": "Hindu",
+    "emoji": "🌙",
+    "description": "Karwa Chauth features a sunrise-to-moonrise fast primarily observed by married women for partners’ well-being, including sargi before dawn, evening puja, viewing the moon through a sieve, and festive meals shared with family, reaffirming bonds and devotion."
+  },
+  {
+    "name": "Dhanteras",
+    "date": "2025-10-18",
+    "type": "Hindu",
+    "emoji": "💰",
+    "description": "Dhanteras opens the Diwali festivities with worship of Dhanvantari and Lakshmi, auspicious purchases of metals or utensils, home purification, lighting diyas, and prayers for health, prosperity, and fortune to usher in a prosperous new period."
+  },
+  {
+    "name": "Kali Chaudas (Narak Chaturdashi)",
+    "date": "2025-10-19",
+    "type": "Hindu",
+    "emoji": "🔥",
+    "description": "Kali Chaudas focuses on cleansing rituals, oil baths, early morning prayers, and protective traditions symbolically destroying negativity before Diwali’s main day, preparing homes and hearts for light, prosperity, and auspicious new beginnings with renewed energy."
+  },
+  {
+    "name": "Diwali (Lakshmi Puja)",
     "date": "2025-10-20",
     "type": "Hindu",
     "emoji": "🪔",
-    "description": "Festival of Lights, celebrating the victory of light over darkness."
+    "description": "Diwali celebrates the victory of light over darkness with Lakshmi-Ganesha puja, diyas, rangoli, sweets, gifts, and family gatherings, renewing prosperity and unity across communities while emphasizing gratitude, charity, and joyful cultural expressions nationwide."
   },
   {
-    "name": "Holi",
-    "date": "2025-03-14",
+    "name": "Govardhan Puja (Annakut)",
+    "date": "2025-10-22",
     "type": "Hindu",
-    "emoji": "🎨",
-    "description": "Festival of Colors, celebrating the arrival of spring."
+    "emoji": "🥣",
+    "description": "Govardhan Puja honors Krishna’s protection by preparing Annakut offerings, arranging many dishes in temples, and expressing gratitude for nature’s bounty, seeking continued shelter, harmony, and blessings for community well-being and environmental balance."
   },
   {
-    "name": "Eid al-Fitr",
-    "date": "2025-03-31",
-    "type": "Muslim",
-    "emoji": "☪️",
-    "description": "Celebration marking the end of Ramadan fasting."
+    "name": "Bhai Dooj",
+    "date": "2025-10-23",
+    "type": "Hindu",
+    "emoji": "🧿",
+    "description": "Bhai Dooj celebrates sibling bonds with tilak ceremonies, blessings, gift exchanges, and festive meals, reinforcing affection, protection, and mutual support, concluding Diwali’s series of auspicious days with family-centered rituals and heartfelt togetherness."
+  },
+  {
+    "name": "Chhath Puja",
+    "date": "2025-10-27",
+    "type": "Hindu",
+    "emoji": "🌅",
+    "description": "Chhath Puja venerates the Sun and Chhathi Maiya with rigorous fasting, riverbank offerings at sunrise and sunset, and purity observances, especially in Bihar, Uttar Pradesh, and Jharkhand, emphasizing gratitude, discipline, and ecological reverence."
+  },
+  {
+    "name": "Guru Nanak Jayanti (Gurpurab)",
+    "date": "2025-11-05",
+    "type": "Sikh",
+    "emoji": "🛕",
+    "description": "Guru Nanak Jayanti honors the birth of Guru Nanak with Akhand Path recitations, Nagar Kirtan processions, illuminated gurdwaras, and community langar, spreading teachings of equality, humility, service, and devotion that guide spiritual and social life."
   },
   {
     "name": "Christmas",
     "date": "2025-12-25",
     "type": "Christian",
     "emoji": "🎄",
-    "description": "Celebration of the birth of Jesus Christ."
-  },
-  {
-    "name": "Guru Nanak Jayanti",
-    "date": "2025-11-05",
-    "type": "Sikh",
-    "emoji": "🕉️",
-    "description": "Birthday of Guru Nanak, the founder of Sikhism."
-  },
-  {
-    "name": "Independence Day",
-    "date": "2025-08-15",
-    "type": "National",
-    "emoji": "🇮🇳",
-    "description": "Celebrating India's independence from British rule."
-  },
-  {
-    "name": "Republic Day",
-    "date": "2025-01-26",
-    "type": "National",
-    "emoji": "🇮🇳",
-    "description": "Commemorating the adoption of India's Constitution."
-  },
-  {
-    "name": "Raksha Bandhan",
-    "date": "2025-08-09",
-    "type": "Hindu",
-    "emoji": "🪅",
-    "description": "Festival celebrating the bond between brothers and sisters."
-  },
-  {
-    "name": "Ganesh Chaturthi",
-    "date": "2025-08-27",
-    "type": "Hindu",
-    "emoji": "🐘",
-    "description": "Celebrating the birth of Lord Ganesha."
-  },
-  {
-    "name": "Durga Puja",
-    "date": "2025-09-30",
-    "type": "Hindu",
-    "emoji": "🙏",
-    "description": "Worship of Goddess Durga, celebrating good over evil."
-  },
-  {
-    "name": "Navratri",
-    "date": "2025-09-22",
-    "type": "Hindu",
-    "emoji": "💃",
-    "description": "Nine nights of worship and celebration."
-  },
-  {
-    "name": "Pongal",
-    "date": "2026-01-14",
-    "type": "Hindu",
-    "emoji": "🌾",
-    "description": "Harvest festival celebrated in Tamil Nadu."
-  },
-  {
-    "name": "Onam",
-    "date": "2025-09-05",
-    "type": "Hindu",
-    "emoji": "🌺",
-    "description": "Harvest festival celebrated in Kerala."
-  },
-  {
-    "name": "Eid al-Adha",
-    "date": "2025-06-07",
-    "type": "Muslim",
-    "emoji": "🐐",
-    "description": "Festival of Sacrifice, commemorating Abraham's willingness to sacrifice."
-  },
-  {
-    "name": "Mahavir Jayanti",
-    "date": "2025-04-10",
-    "type": "Jain",
-    "emoji": "🕉️",
-    "description": "Birthday of Lord Mahavira, founder of Jainism."
-  },
-  {
-    "name": "Buddha Purnima",
-    "date": "2025-05-12",
-    "type": "Buddhist",
-    "emoji": "☸️",
-    "description": "Celebrating the birth of Gautama Buddha."
-  },
-  {
-    "name": "Makar Sankranti",
-    "date": "2026-01-14",
-    "type": "Hindu",
-    "emoji": "🪁",
-    "description": "Harvest festival marking the sun's transit into Capricorn."
-  },
-  {
-    "name": "Maha Shivaratri",
-    "date": "2025-02-26",
-    "type": "Hindu",
-    "emoji": "🔱",
-    "description": "Great night of Lord Shiva, a night of meditation and prayer."
-  },
-  {
-    "name": "Ram Navami",
-    "date": "2025-04-06",
-    "type": "Hindu",
-    "emoji": "🏹",
-    "description": "Celebrating the birth of Lord Rama."
-  },
-  {
-    "name": "Janmashtami",
-    "date": "2025-08-16",
-    "type": "Hindu",
-    "emoji": "🦚",
-    "description": "Celebrating the birth of Lord Krishna."
+    "description": "Christmas commemorates the birth of Jesus Christ through midnight Mass, carols, nativity scenes, decorations, and charity, bringing communities together with hope and goodwill, and reflecting messages of compassion, joy, and renewed spiritual commitment."
   }
 ]
