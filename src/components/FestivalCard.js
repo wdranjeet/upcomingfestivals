@@ -2,9 +2,12 @@ import React from 'react';
 import { Card, Button, Badge } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Countdown from './Countdown';
+import SocialShare from './SocialShare';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const FestivalCard = ({ festival }) => {
   const navigate = useNavigate();
+  const { t, getFestivalDescription } = useLanguage();
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -48,14 +51,18 @@ const FestivalCard = ({ festival }) => {
         </div>
         
         <Card.Text className="text-muted small">
-          {festival.description}
+          {getFestivalDescription(festival.name, festival.description)}
         </Card.Text>
         
         <Countdown targetDate={festival.date} />
         
-        <div className="d-grid gap-2 mt-3">
+        <div className="mt-3 mb-2">
+          <SocialShare festival={festival} compact={true} />
+        </div>
+        
+        <div className="d-grid gap-2 mt-2">
           <Button variant="primary" size="sm" onClick={handleLearnMore}>
-            Learn More
+            {t('learnMore')}
           </Button>
         </div>
       </Card.Body>

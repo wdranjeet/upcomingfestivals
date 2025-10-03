@@ -1,35 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container, Row, Col, Form, InputGroup } from 'react-bootstrap';
 import Header from './components/Header';
 import FestivalCard from './components/FestivalCard';
 import FestivalDetail from './components/FestivalDetail';
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import { fetchFestivals } from './services/festivalService';
 import './App.css';
 
-function App() {
+function AppContent() {
   const [festivals, setFestivals] = useState([]);
   const [filteredFestivals, setFilteredFestivals] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState('all');
   const [darkMode, setDarkMode] = useState(false);
+  const [useAPI, setUseAPI] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { t } = useLanguage();
+
+  const loadFestivals = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const data = await fetchFestivals(useAPI);
+      setFestivals(data);
+      filterFestivalsData(data, 'all', '');
+    } catch (error) {
+      console.error('Error loading festivals:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [useAPI]);
 
   useEffect(() => {
-    // Fetch festivals from JSON file
-    fetch('/festivals.json')
-      .then(response => response.json())
-      .then(data => {
-        setFestivals(data);
-        filterFestivals(data, 'all', '');
-      })
-      .catch(error => console.error('Error loading festivals:', error));
+    // Fetch festivals
+    loadFestivals();
 
     // Check for saved dark mode preference
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(savedDarkMode);
-  }, []);
+
+    // Check for saved API preference
+    const savedUseAPI = localStorage.getItem('useAPI') === 'true';
+    setUseAPI(savedUseAPI);
+  }, [loadFestivals]);
 
   useEffect(() => {
-    filterFestivals(festivals, filterType, searchQuery);
+    filterFestivalsData(festivals, filterType, searchQuery);
   }, [festivals, filterType, searchQuery]);
 
   useEffect(() => {
@@ -42,7 +58,7 @@ function App() {
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
 
-  const filterFestivals = (data, type, search) => {
+  const filterFestivalsData = (data, type, search) => {
     const now = new Date();
     now.setHours(0, 0, 0, 0);
 
@@ -74,6 +90,24 @@ function App() {
     setDarkMode(!darkMode);
   };
 
+  const toggleAPISource = async () => {
+    const newUseAPI = !useAPI;
+    setUseAPI(newUseAPI);
+    localStorage.setItem('useAPI', newUseAPI);
+    
+    // Reload festivals with new source
+    setIsLoading(true);
+    try {
+      const data = await fetchFestivals(newUseAPI);
+      setFestivals(data);
+      filterFestivalsData(data, filterType, searchQuery);
+    } catch (error) {
+      console.error('Error loading festivals:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -96,10 +130,10 @@ function App() {
                 <Container className="hero-content">
                   <div className="text-center text-white">
                     <h1 className="display-3 fw-bold mb-4 animate-fade-in">
-                      🎉 Upcoming Indian Festivals 🎉
+                      🎉 {t('heroTitle')} 🎉
                     </h1>
                     <p className="lead mb-4 animate-fade-in">
-                      Countdown to India's vibrant celebrations and cultural events
+                      {t('heroSubtitle')}
                     </p>
                   </div>
                 </Container>
@@ -107,6 +141,25 @@ function App() {
 
               {/* Main Content */}
               <Container className="py-5" id="upcoming">
+                {/* API Toggle Section */}
+                <Row className="mb-3">
+                  <Col className="d-flex justify-content-end">
+                    <div className="form-check form-switch">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="apiToggle"
+                        checked={useAPI}
+                        onChange={toggleAPISource}
+                        disabled={isLoading}
+                      />
+                      <label className="form-check-label" htmlFor="apiToggle">
+                        {isLoading ? '⏳ Loading...' : '🌐 Use Live API Data'}
+                      </label>
+                    </div>
+                  </Col>
+                </Row>
+
                 {/* Search and Filter Section */}
                 <Row className="mb-4">
                   <Col md={8} className="mb-3 mb-md-0">
@@ -114,7 +167,7 @@ function App() {
                       <InputGroup.Text>🔍</InputGroup.Text>
                       <Form.Control
                         type="text"
-                        placeholder="Search festivals..."
+                        placeholder={t('searchPlaceholder')}
                         value={searchQuery}
                         onChange={handleSearchChange}
                       />
@@ -122,14 +175,14 @@ function App() {
                   </Col>
                   <Col md={4}>
                     <Form.Select value={filterType} onChange={handleFilterChange}>
-                      <option value="all">All Festivals</option>
-                      <option value="Hindu">Hindu</option>
-                      <option value="Muslim">Muslim</option>
-                      <option value="Christian">Christian</option>
-                      <option value="Sikh">Sikh</option>
-                      <option value="Jain">Jain</option>
-                      <option value="Buddhist">Buddhist</option>
-                      <option value="National">National</option>
+                      <option value="all">{t('allFestivals')}</option>
+                      <option value="Hindu">{t('hindu')}</option>
+                      <option value="Muslim">{t('muslim')}</option>
+                      <option value="Christian">{t('christian')}</option>
+                      <option value="Sikh">{t('sikh')}</option>
+                      <option value="Jain">{t('jain')}</option>
+                      <option value="Buddhist">{t('buddhist')}</option>
+                      <option value="National">{t('national')}</option>
                     </Form.Select>
                   </Col>
                 </Row>
@@ -137,7 +190,7 @@ function App() {
                 {/* Festival Count */}
                 <div className="mb-4">
                   <p className="text-muted">
-                    Showing <strong className="text-primary">{filteredFestivals.length}</strong> upcoming festivals
+                    {t('showing')} <strong className="text-primary">{filteredFestivals.length}</strong> {t('upcomingFestivalsText')}
                   </p>
                 </div>
 
@@ -152,8 +205,8 @@ function App() {
                   </Row>
                 ) : (
                   <div className="text-center py-5">
-                    <h3 className="text-muted">😔 No festivals found</h3>
-                    <p className="text-muted">Try adjusting your search or filter</p>
+                    <h3 className="text-muted">😔 {t('noFestivalsFound')}</h3>
+                    <p className="text-muted">{t('adjustSearchFilter')}</p>
                   </div>
                 )}
               </Container>
@@ -161,8 +214,8 @@ function App() {
               {/* Footer */}
               <footer className={`py-4 mt-5 ${darkMode ? 'bg-dark text-light' : 'bg-light'}`}>
                 <Container className="text-center">
-                  <p className="mb-2">🎊 Celebrating Indian Culture and Traditions 🎊</p>
-                  <p className="small text-muted mb-0">Made with ❤️ for all festival lovers</p>
+                  <p className="mb-2">🎊 {t('celebratingCulture')} 🎊</p>
+                  <p className="small text-muted mb-0">{t('madeWithLove')}</p>
                 </Container>
               </footer>
             </>
@@ -171,6 +224,14 @@ function App() {
         </Routes>
       </div>
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }
 

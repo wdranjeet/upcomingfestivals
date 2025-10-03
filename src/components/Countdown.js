@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Countdown = ({ targetDate }) => {
+  const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -36,25 +38,25 @@ const Countdown = ({ targetDate }) => {
         <div className="col-3">
           <div className="countdown-box bg-gradient text-white text-center p-3 rounded shadow-sm">
             <div className="countdown-number display-6 fw-bold">{timeLeft.days}</div>
-            <div className="countdown-label small">Days</div>
+            <div className="countdown-label small">{t('days')}</div>
           </div>
         </div>
         <div className="col-3">
           <div className="countdown-box bg-gradient text-white text-center p-3 rounded shadow-sm">
             <div className="countdown-number display-6 fw-bold">{timeLeft.hours}</div>
-            <div className="countdown-label small">Hours</div>
+            <div className="countdown-label small">{t('hours')}</div>
           </div>
         </div>
         <div className="col-3">
           <div className="countdown-box bg-gradient text-white text-center p-3 rounded shadow-sm">
             <div className="countdown-number display-6 fw-bold">{timeLeft.minutes}</div>
-            <div className="countdown-label small">Minutes</div>
+            <div className="countdown-label small">{t('minutes')}</div>
           </div>
         </div>
         <div className="col-3">
           <div className="countdown-box bg-gradient text-white text-center p-3 rounded shadow-sm">
             <div className="countdown-number display-6 fw-bold">{timeLeft.seconds}</div>
-            <div className="countdown-label small">Seconds</div>
+            <div className="countdown-label small">{t('seconds')}</div>
           </div>
         </div>
       </div>
