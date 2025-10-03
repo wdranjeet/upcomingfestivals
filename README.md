@@ -19,6 +19,12 @@ A modern, responsive web application built with React.js and Bootstrap 5 that di
 - **Bootstrap 5 UI**: Modern Card components, Buttons, Modals, and Navbar
 - **"Remind Me" CTA**: Large call-to-action button that opens modal with Google Calendar integration
 
+### 🎉 NEW Features
+- **🎵 Background Festive Music Toggle**: Play/pause background music with volume control and localStorage persistence
+- **📱 Social Sharing Buttons**: Share festivals on Facebook, Twitter, WhatsApp, and LinkedIn with one click
+- **🌐 Multi-Language Support**: Switch between English and Hindi with full UI translation including festival descriptions
+- **🔄 Live Festival API Integration**: Toggle between live API data and local JSON with hybrid fallback approach
+
 ### Technical Highlights
 - **Frontend**: React.js with Functional Components and Hooks (useState, useEffect)
 - **UI Framework**: Bootstrap 5 with react-bootstrap components
@@ -40,9 +46,17 @@ A modern, responsive web application built with React.js and Bootstrap 5 that di
   │   ├── components/
   │   │   ├── Countdown.js     # Timer logic and UI
   │   │   ├── FestivalCard.js  # Card UI for festival info
-  │   │   └── Header.js        # Navbar component
+  │   │   ├── FestivalDetail.js # Detailed festival view
+  │   │   ├── Header.js        # Navbar component
+  │   │   ├── MusicPlayer.js   # Background music player (NEW)
+  │   │   └── SocialShare.js   # Social sharing component (NEW)
+  │   ├── contexts/
+  │   │   └── LanguageContext.js # Language management context (NEW)
+  │   ├── services/
+  │   │   └── festivalService.js # API integration service (NEW)
   │   ├── App.js               # Main layout with background + sections
   │   ├── App.css              # Custom styles and animations
+  │   ├── translations.js      # English/Hindi translations (NEW)
   │   └── index.js             # React app entry point
   ├── netlify.toml             # Netlify deployment configuration
   ├── package.json             # Dependencies and scripts
@@ -175,22 +189,32 @@ In `src/App.css`, update the `.hero-section` background-image URL:
 
 ## 🎯 Usage
 
+### Basic Features
 1. **Browse Festivals**: Scroll through the list of upcoming festivals
 2. **Search**: Type in the search box to find specific festivals
 3. **Filter**: Use the dropdown to filter by religion/category
-4. **Dark Mode**: Click the moon/sun icon to toggle dark mode
-5. **Watch Countdown**: Timers update every second automatically
-6. **Learn More**: Click the "Learn More" button on any festival card
-7. **Add to Calendar**: Click "Add to Google Calendar" in the modal
+4. **Watch Countdown**: Timers update every second automatically
+5. **Learn More**: Click the "Learn More" button on any festival card
+6. **Add to Calendar**: Click "Add to Google Calendar" in the detail page
+
+### New Features
+7. **🎵 Background Music**: Click the music icon (🎵) in the header to play/pause festive background music
+8. **🌐 Language Toggle**: Click "हिं" or "EN" in the header to switch between Hindi and English
+9. **🌙 Dark Mode**: Click the moon/sun icon to toggle dark mode
+10. **📱 Social Sharing**: Click the share buttons (📘 🐦 💬) on festival cards to share on social media
+11. **🔄 Live API Data**: Toggle the "Use Live API Data" switch to fetch festivals from a live API source
 
 ## 🛠️ Technologies Used
 
 - **React.js** - Frontend framework
 - **Bootstrap 5** - UI framework
 - **react-bootstrap** - Bootstrap components for React
+- **React Router** - Client-side routing
+- **React Context API** - State management for language
 - **CSS3** - Animations and custom styling
-- **Fetch API** - Data loading
-- **LocalStorage** - Dark mode preference
+- **Fetch API** - Data loading and API integration
+- **LocalStorage** - Persisting user preferences (dark mode, language, music, API source)
+- **Nager.Date API** - Live festival/holiday data integration
 
 ## 📄 License
 
@@ -209,11 +233,35 @@ None at the moment. Please report any issues on GitHub.
   - Issue: Countdown boxes were showing with transparent backgrounds
   - Solution: Updated CSS selectors in `App.css` to properly target countdown boxes
 
+### Recent Enhancements (Latest Update)
+- ✅ **Added:** Background festive music toggle with play/pause controls
+  - Feature: Music player in header with 🎵/🔇 icon
+  - Volume: Set to 30% for comfortable listening
+  - Persistence: Saves preference to localStorage
+  
+- ✅ **Added:** Social sharing functionality
+  - Platforms: Facebook, Twitter, WhatsApp, LinkedIn
+  - Integration: Compact buttons on cards, full section on detail pages
+  - Mobile: Native share API support
+  
+- ✅ **Added:** Multi-language support (English/Hindi)
+  - Toggle: हिं/EN button in header
+  - Coverage: Complete UI translation including festival descriptions
+  - Persistence: Language preference saved to localStorage
+  
+- ✅ **Added:** Live festival API integration
+  - Source: Nager.Date API (no API key required)
+  - Toggle: Switch between API and local JSON data
+  - Fallback: Hybrid approach ensures data availability
+  - Persistence: API preference saved to localStorage
+
 ## 🚧 Future Enhancements
 
-- [ ] Background festive music toggle
-- [ ] Social sharing buttons
-- [ ] Multi-language support
-- [ ] Integration with live festival API
+- [x] Background festive music toggle ✅ **COMPLETED**
+- [x] Social sharing buttons ✅ **COMPLETED**
+- [x] Multi-language support ✅ **COMPLETED**
+- [x] Integration with live festival API ✅ **COMPLETED**
 - [ ] Push notifications for upcoming festivals
 - [ ] User authentication to save favorite festivals
+- [ ] Additional language support (Spanish, French, etc.)
+- [ ] Custom music upload feature
