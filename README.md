@@ -47,6 +47,7 @@ A modern, responsive web application built with React.js and Bootstrap 5 that di
   ├── netlify.toml             # Netlify deployment configuration
   ├── package.json             # Dependencies and scripts
   ├── .gitignore               # Git ignore rules
+  ├── API_CONFIGURATION.md     # Comprehensive API setup guide
   └── README.md                # This file
 ```
 
@@ -125,8 +126,34 @@ Edit `public/festivals.json` and add a new festival object:
 }
 ```
 
+**Important:** Dates must be in `YYYY-MM-DD` format and should be future dates for the countdown to work.
+
+### API Configuration
+
+The app currently uses a static JSON file (`public/festivals.json`) as its data source. To integrate external APIs for automatic festival updates:
+
+**📖 See the comprehensive [API Configuration Guide](./API_CONFIGURATION.md)** for:
+- Setting up Nager.Date API (no API key required)
+- Configuring Calendarific API
+- Using AbstractAPI Holidays
+- Implementing hybrid API + JSON fallback
+- Troubleshooting common issues
+
+**Quick Start with API:**
+1. Check the [API_CONFIGURATION.md](./API_CONFIGURATION.md) file
+2. Choose your preferred API provider
+3. Follow the step-by-step integration guide
+4. Test with fallback to ensure reliability
+
 ### Changing Colors/Themes
 The app uses Bootstrap 5 and custom CSS. Modify the styles in `src/App.css` or update Bootstrap variables.
+
+**Countdown Timer Colors:**
+The countdown boxes use vibrant gradients defined in `src/App.css`:
+- Days: Pink gradient (`#f093fb` to `#f5576c`)
+- Hours: Cyan gradient (`#4facfe` to `#00f2fe`)
+- Minutes: Green gradient (`#43e97b` to `#38f9d7`)
+- Seconds: Orange gradient (`#fa709a` to `#fee140`)
 
 ### Changing Background Image
 In `src/App.css`, update the `.hero-section` background-image URL:
@@ -176,6 +203,11 @@ Made with ❤️ for celebrating Indian culture and traditions.
 ## 🐛 Known Issues
 
 None at the moment. Please report any issues on GitHub.
+
+### Recent Fixes
+- ✅ **Fixed:** Countdown timer gradient colors now display correctly (Oct 2025)
+  - Issue: Countdown boxes were showing with transparent backgrounds
+  - Solution: Updated CSS selectors in `App.css` to properly target countdown boxes
 
 ## 🚧 Future Enhancements
 
