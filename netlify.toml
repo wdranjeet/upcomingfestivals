@@ -4,8 +4,8 @@
   status = 200
 
 [build]
-  publish = "."
-  command = "echo 'No build command needed for static site'"
+  publish = "build"
+  command = "npm run build"
 
 [[headers]]
   for = "/*"
